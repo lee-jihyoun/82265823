@@ -54,6 +54,11 @@ jobs:
         username: ${{ secrets.BASEACR_USERNAME }}
         password: ${{ secrets.BASEACR_PASSWORD }}
 
+    - name: 'Debug Secrets'
+      run: |
+            echo "Base ACR: ${{ secrets.BASEACR_LOGIN_SERVER }}"
+            echo "App ACR: ${{ secrets.APPACR_LOGIN_SERVER }}"
+
     - name: 'Build & Tag Image'
       run: |
             docker build -t ${{ secrets.BASEACR_LOGIN_SERVER  }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
